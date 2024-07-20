@@ -16,7 +16,17 @@ module HTTP
 
     def generate_http_response(status, response)
       body = JSON.generate(response)
-      "HTTP/1.1 #{status} OK\r\nAccept-Charset: utf-8\r\nContent-Type: application/json\r\nContent-Length: #{body.bytesize}\r\nConnection: close\r\n\r\n#{body}"
+      headers = {
+        'Access-Control-Allow-Origin' => '*',
+        'Access-Control-Allow-Methods' => 'GET',
+        'Access-Control-Allow-Headers' => 'Content-Type',
+        'Accept-Charset' => 'utf-8',
+        'Content-Type' => 'application/json',
+        'Content-Length' => body.bytesize.to_s,
+        'Connection' => 'close'
+      }
+      headers_string = headers.map { |key, value| "#{key}: #{value}" }.join("\r\n")
+      "HTTP/1.1 #{status} OK\r\n#{headers_string}\r\n\r\n#{body}"
     end
 
     def start
