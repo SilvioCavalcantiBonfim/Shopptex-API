@@ -1,4 +1,4 @@
-# API Simples
+# Shopptex API
 
 ![Ruby](https://img.shields.io/badge/-Ruby-white?style=for-the-badge&logo=ruby&color=CC342D&logoColor=white)
 
