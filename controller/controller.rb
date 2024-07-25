@@ -1,12 +1,15 @@
 require './service/product_service'
 require './service/info_service'
+require 'sinatra'
+require 'json'
 
-class Controller
-  def self.getInfo
-    InfoService.create
-  end
+get '/products' do
+  content_type :json
+  ProductService.getAll.to_json
+end
 
-  def self.getAllProducts
-    ProductService.getAll
-  end
+
+get '/info' do
+  content_type :json
+  InfoService.create.to_json
 end
